@@ -13,7 +13,7 @@ const ExpenseList = props => {
 
     return(props.items.map(expenses =>
         
-        <ul>
+        <ul className='expenses-list' key={expenses.id}>
         <ExpenseItems className='expenses-list' key={expenses.id} title={expenses.title} date={expenses.date} amount={expenses.amount} > </ExpenseItems>
         </ul>
         ))

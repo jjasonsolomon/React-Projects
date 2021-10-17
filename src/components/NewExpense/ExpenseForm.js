@@ -1,28 +1,25 @@
 import './ExpenseForm.css'
-import { useState } from 'react'
+import { useState } from 'react';
+
+
 
 const ExpenseForm = (props) => 
 {
+
+    const [showButton,setShowButton] = useState(1)
 
     const [enteredTitle,setEnteredTitle] = useState('');
     const [enteredAmount,setEnteredAmount] = useState('');
     const [enteredDate,setEnteredDate] = useState('');
 
-    // const [userInput, setUserInput] = useState({
-    //     enteredTitle: '',
-    //     enteredAmount: '',
-    //     enteredDate: ''
-    // });
+    
 
 
     const titleChangeHandler = (event) =>
     {
 
         setEnteredTitle(event.target.value);
-    //    setUserInput({
-    //        ...userInput,
-    //        enteredTitle: event.target.value
-    //    })
+   
     }
 
     const amountChangeHandler = (event) =>
@@ -30,19 +27,13 @@ const ExpenseForm = (props) =>
 
         setEnteredAmount(event.target.value)
 
-        // setUserInput({
-        //     ...userInput,
-        //     enteredAmount: event.target.value
-        // })
+       
     }
     const dateChangeHandler = (event) =>
     {
 
         setEnteredDate(event.target.value);
-        // setUserInput({
-        //     ...userInput,
-        //     enteredDate:event.target.value
-        // })
+       
     }
 
     const submitHandler = (event) => {
@@ -63,12 +54,31 @@ const ExpenseForm = (props) =>
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
+        setShowButton(1);
+
         
     }
 
+    const cancelHandler = () => {
+
+       setShowButton(1);
+
+    }
+
+    const addNewExpenseButtonHandler = () => {
+      setShowButton(0);
+    }
+    
     
 return(
+    
+
+    <div>
+
+  { showButton>0 ?  <button onClick={addNewExpenseButtonHandler}>Add New Expenses</button> : 
+
     <form onSubmit={submitHandler}> 
+
     <div className='new-expense__controls'>
 
         <div className='new-expense__control'>
@@ -88,11 +98,17 @@ return(
         </div>
     </div>
     <div className='new-expense__actions'>
+        <button onClick={cancelHandler}>Cancel</button>
         <button type='submit'>Add Expense</button>
+
       </div>
 
     </form>
+}
+    </div>
 );
 }
+
+
 
 export default ExpenseForm;
